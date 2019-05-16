@@ -3,7 +3,7 @@ from qtpy.QtGui import *
 from qtpy.QtWidgets import *
 
 from xicam.gui.static import path
-from xicam.gui.threads import manager as threadmanager
+from xicam.core.threads import manager as threadmanager
 from xicam.plugins import GUIPlugin, GUILayout
 
 
@@ -51,7 +51,7 @@ class ThreadMonitorPlugin(GUIPlugin):
 
     def _test(self):
 
-        from xicam.gui import threads
+        from xicam.core import threads
         import time
         def test():
             a = 0
