@@ -20,11 +20,10 @@ class ThreadMonitorPlugin(GUIPlugin):
         self.stages = {'Monitor': GUILayout(self.monitorwidget, top=self.toolbar)}
         super(ThreadMonitorPlugin, self).__init__()
 
-        self.model = QStandardItemModel()
+        self.model = threadmanager
         self.monitorwidget.setModel(self.model)
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.update)
-        self.timer.start(1000)
+        self._test()
+
 
     def pause(self):
         if self.timer.isActive():
@@ -32,22 +31,7 @@ class ThreadMonitorPlugin(GUIPlugin):
         else:
             self.timer.start()
 
-    def update(self):
-        # TODO: check if this plugin is active
 
-        self.model.clear()
-        for thread in threadmanager.threads:
-            item = QStandardItem(thread.method.__repr__())
-            item.setData(QColor(Qt.gray), Qt.ForegroundRole)
-            if thread.running:
-                item.setData(QColor(Qt.yellow), Qt.ForegroundRole)
-            if thread.cancelled:
-                item.setData(QColor(Qt.magenta), Qt.ForegroundRole)
-            if thread.exception:
-                item.setData(QColor(Qt.red), Qt.ForegroundRole)
-            if thread.done:
-                item.setData(QColor(Qt.green), Qt.ForegroundRole)
-            self.model.appendRow(item)
 
     def _test(self):
 
