@@ -22,7 +22,6 @@ class ThreadMonitorPlugin(GUIPlugin):
 
         self.model = threadmanager
         self.monitorwidget.setModel(self.model)
-        self._test()
 
 
     def pause(self):
